@@ -14,11 +14,18 @@ function App() {
     };
 
     const handleTest = () => {
-        const actionData = {
-            type,
-            data: JSON.parse(data),
-        };
-        window?.ReactNativeWebView?.postMessage(JSON.stringify(actionData));
+        if (data && JSON.parse(data)) {
+            const actionData = {
+                type,
+                data: JSON.parse(data),
+            };
+            window?.ReactNativeWebView?.postMessage(JSON.stringify(actionData));
+        } else {
+            const actionData = {
+                type,
+            };
+            window?.ReactNativeWebView?.postMessage(JSON.stringify(actionData));
+        }
     };
 
     return (
